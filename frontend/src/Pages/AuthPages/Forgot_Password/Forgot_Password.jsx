@@ -26,11 +26,15 @@ function Forgot_Password() {
         e.preventDefault();
         setError(''); setSuccess(''); setLoading(true);
         try {
-            const res = await axios.post('https://hackorbit-final-coding-era.onrender.com/forgot-password', { email });
+            const res = await axios.post('http://localhost:3001/forgot-password', { email });
             setSuccess('OTP sent to your email.');
             setStep(2);
         } catch (err) {
-            setError(err.response?.data?.error || 'Failed to send OTP');
+            if (err.code === 'ERR_NETWORK' || err.message?.includes('Network Error')) {
+                setError('Cannot connect to server. Please ensure the backend is running on port 3001.');
+            } else {
+                setError(err.response?.data?.error || 'Failed to send OTP');
+            }
         } finally {
             setLoading(false);
         }
@@ -56,11 +60,15 @@ function Forgot_Password() {
         setError(''); setSuccess(''); setLoading(true);
         try {
             await new Promise(res => setTimeout(res, 1200)); // Add delay
-            const res = await axios.post('https://hackorbit-final-coding-era.onrender.com/verify-otp', { email, otp });
+            const res = await axios.post('http://localhost:3001/verify-otp', { email, otp });
             setSuccess('OTP verified. You can now reset your password.');
             setStep(3);
         } catch (err) {
-            setError(err.response?.data?.error || 'Invalid OTP');
+            if (err.code === 'ERR_NETWORK' || err.message?.includes('Network Error')) {
+                setError('Cannot connect to server. Please ensure the backend is running on port 3001.');
+            } else {
+                setError(err.response?.data?.error || 'Invalid OTP');
+            }
         } finally {
             setLoading(false);
         }
@@ -84,11 +92,15 @@ function Forgot_Password() {
             return;
         }
         try {
-            await axios.post('https://hackorbit-final-coding-era.onrender.com/reset-password', { email, otp, newPassword });
+            await axios.post('http://localhost:3001/reset-password', { email, otp, newPassword });
             setSuccess('Password reset successful! You can now log in.');
             setStep(4);
         } catch (err) {
-            setError(err.response?.data?.error || 'Failed to reset password');
+            if (err.code === 'ERR_NETWORK' || err.message?.includes('Network Error')) {
+                setError('Cannot connect to server. Please ensure the backend is running on port 3001.');
+            } else {
+                setError(err.response?.data?.error || 'Failed to reset password');
+            }
         } finally {
             setLoading(false);
         }

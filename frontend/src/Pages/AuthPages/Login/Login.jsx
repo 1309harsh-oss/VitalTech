@@ -24,7 +24,7 @@ function Login() {
         }));
     };
 
-    const { setUserRole } = useUser();
+    const { setUserRole, setName, setEmail } = useUser();
 
     const [error, setError] = useState('');
     const [showSuccessModal, setShowSuccessModal] = useState(false);
@@ -35,7 +35,7 @@ function Login() {
         setError('');
         setLoading(true);
         
-        axios.post('https://hackorbit-final-coding-era.onrender.com/login', {
+        axios.post('http://localhost:3001/login', {
             email: formData.email,
             password: formData.password
         })
@@ -43,6 +43,8 @@ function Login() {
             setLoading(false);
             if (response.data.status === 'Success') {
                 setUserRole(response.data.role);
+                setName(response.data.name || '');
+                setEmail(response.data.email || '');
                 setShowSuccessModal(true);
                 setTimeout(() => {
                     setShowSuccessModal(false);
@@ -54,8 +56,13 @@ function Login() {
         })
         .catch(err => {
             setLoading(false);
-            console.error('Login error:', err);
-            setError('An error occurred during login. Please try again.');
+            if (err.code === 'ERR_NETWORK' || err.message?.includes('Network Error')) {
+                setError('Cannot connect to server. Please ensure the backend is running on port 3001.');
+            } else if (err.response?.data) {
+                setError(err.response.data.error || 'Invalid email or password.');
+            } else {
+                setError('An error occurred during login. Please try again.');
+            }
         });
     };
 

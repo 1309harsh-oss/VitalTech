@@ -1,7 +1,9 @@
 import './Style.css';
+import { useNavigate } from 'react-router-dom';
 import doctor from '../../assets/images/hero-doctor.png';
 
 function HomePage() {
+    const navigate = useNavigate();
     return (
         <>
         <section className="hero-section">
@@ -11,8 +13,8 @@ function HomePage() {
                         <p className="hero-subtitle">Your Trusted Partner in AI-Powered Healthcare</p>
                         <p className="hero-description">Experience the future of healthcare with our advanced AI disease detection and comprehensive patient management system.</p>
                         <div className='hero-btn'>
-                        <button className="cta-button">Register Now</button>
-                        <button className="live-button">Try Live Demo</button>
+                        <button className="cta-button" onClick={() => navigate('/signup')}>Register Now</button>
+                        <button className="live-button" onClick={() => navigate('/login')}>Try Live Demo</button>
                         </div>
                     </div>
                     <div className="hero-content-right">

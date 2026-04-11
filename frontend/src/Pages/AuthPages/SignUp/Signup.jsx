@@ -95,7 +95,7 @@ function Signup() {
         }
 
         try {
-            const response = await axios.post('https://hackorbit-final-coding-era.onrender.com/register', {
+            const response = await axios.post('http://localhost:3001/register', {
                 name: formData.name,
                 username: formData.username,
                 email: formData.email,
@@ -110,11 +110,17 @@ function Signup() {
                 navigate('/login');
             }, 1500);
         } catch (error) {
-            console.error('Registration error:', error);
-            setErrors(prev => ({
-                ...prev,
-                submit: 'Registration failed. Please try again.'
-            }));
+            if (error.code === 'ERR_NETWORK' || error.message?.includes('Network Error')) {
+                setErrors(prev => ({
+                    ...prev,
+                    submit: 'Cannot connect to server. Please ensure the backend is running on port 3001.'
+                }));
+            } else {
+                setErrors(prev => ({
+                    ...prev,
+                    submit: error.response?.data?.error || 'Registration failed. Please try again.'
+                }));
+            }
             setLoading(false);
         }
     };

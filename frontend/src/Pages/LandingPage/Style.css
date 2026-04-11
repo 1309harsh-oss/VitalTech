@@ -709,3 +709,68 @@ input, textarea {
         grid-template-columns: 1fr;
     }
 }
+
+/* Contact form success message */
+.contact-success-msg {
+    background: #d1fae5;
+    color: #065f46;
+    padding: 1rem 1.5rem;
+    border-radius: 10px;
+    margin-bottom: 1.5rem;
+    border: 1px solid #6ee7b7;
+    font-weight: 500;
+    animation: fadeInMsg 0.4s ease;
+}
+
+@keyframes fadeInMsg {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.submit-btn:disabled {
+    background-color: #a5b4fc;
+    cursor: not-allowed;
+}
+
+/* Service card expansion */
+.service-card.expanded {
+    border: 2px solid #4f46e5;
+    box-shadow: 0 8px 24px rgba(79, 70, 229, 0.15);
+}
+
+.service-details {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e2e8f0;
+    text-align: left;
+    animation: fadeInMsg 0.3s ease;
+}
+
+.service-details p {
+    color: #475569;
+    line-height: 1.6;
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+}
+
+.try-service-btn {
+    padding: 0.6rem 1.2rem;
+    background: #10b981;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.2s;
+}
+
+.try-service-btn:hover {
+    background: #059669;
+}
+
+/* Pricing plan selection */
+.price-card.selected-plan {
+    border-color: #10b981;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+    transform: translateY(-5px);
+}

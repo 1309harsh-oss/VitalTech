@@ -1,5 +1,18 @@
 import './Style.css';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+
 function Prices() {
+    const navigate = useNavigate();
+    const [selectedPlan, setSelectedPlan] = useState(null);
+
+    const handleSubscribe = (plan) => {
+        setSelectedPlan(plan);
+        setTimeout(() => {
+            navigate('/signup');
+        }, 500);
+    };
+
     return (
         <div className="pricing-page">
             <section className="pricing-header">
@@ -8,7 +21,7 @@ function Prices() {
             </section>
 
             <section className="pricing-grid">
-                <div className="price-card basic">
+                <div className={`price-card basic ${selectedPlan === 'basic' ? 'selected-plan' : ''}`}>
                     <div className="card-header">
                         <h3>Basic</h3>
                         <div className="price">
@@ -23,10 +36,10 @@ function Prices() {
                         <li>✓ Email Support</li>
                         <li>✓ Mobile App Access</li>
                     </ul>
-                    <button className="subscribe-btn">Get Started</button>
+                    <button className="subscribe-btn" onClick={() => handleSubscribe('basic')}>Get Started</button>
                 </div>
 
-                <div className="price-card pro">
+                <div className={`price-card pro ${selectedPlan === 'pro' ? 'selected-plan' : ''}`}>
                     <div className="popular-tag">Most Popular</div>
                     <div className="card-header">
                         <h3>Professional</h3>
@@ -43,10 +56,10 @@ function Prices() {
                         <li>✓ Mobile App Access</li>
                         <li>✓ Family Health Tracking</li>
                     </ul>
-                    <button className="subscribe-btn pro-btn">Get Started</button>
+                    <button className="subscribe-btn pro-btn" onClick={() => handleSubscribe('pro')}>Get Started</button>
                 </div>
 
-                <div className="price-card enterprise">
+                <div className={`price-card enterprise ${selectedPlan === 'enterprise' ? 'selected-plan' : ''}`}>
                     <div className="card-header">
                         <h3>Enterprise</h3>
                         <div className="price">
@@ -64,7 +77,7 @@ function Prices() {
                         <li>✓ Multi-Family Health Tracking</li>
                         <li>✓ Custom Integration</li>
                     </ul>
-                    <button className="subscribe-btn">Contact Sales</button>
+                    <button className="subscribe-btn" onClick={() => handleSubscribe('enterprise')}>Contact Sales</button>
                 </div>
             </section>
 

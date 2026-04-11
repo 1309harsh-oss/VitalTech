@@ -11,7 +11,7 @@ function IndividualSidebar() {
     const [isCollapsed, setIsCollapsed] = useState(true);
     const location = useLocation();
     const navigate = useNavigate();
-    const { logout } = useUser();
+    const { logout, name } = useUser();
 
     const toggleSidebar = () => {
         setIsCollapsed(!isCollapsed);
@@ -56,7 +56,7 @@ function IndividualSidebar() {
             <div className="sb-user-section">
             <div className="sb-user-profile">
                 <FaUser size={24} />
-                    {!isCollapsed && <span className="sb-username">Arin Jain</span>}
+                    {!isCollapsed && <span className="sb-username">{name || 'User'}</span>}
                     
                 </div>
                 <div className="sb-user-actions">

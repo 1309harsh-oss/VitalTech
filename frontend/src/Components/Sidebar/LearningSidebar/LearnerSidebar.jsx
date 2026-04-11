@@ -1,12 +1,20 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FiSettings, FiLogOut, FiMenu, FiX, FiHome } from 'react-icons/fi';
-// import logo from '../../assets/logo.svg';
-import defaultAvatar from '../../../assets/logo-user.png';
+import { FaUser } from 'react-icons/fa';
 import '../Sidebar.css';
+import { useUser } from '../../../context/UserContext';
 
 function LearnerSidebar() {
     const [isCollapsed, setIsCollapsed] = useState(true);
+    const location = useLocation();
+    const navigate = useNavigate();
+    const { logout, name } = useUser();
+
+    const handleLogout = () => {
+        logout();
+        navigate('/');
+    };
 
     const toggleSidebar = () => {
         setIsCollapsed(!isCollapsed);
@@ -14,33 +22,29 @@ function LearnerSidebar() {
 
     return (
         <>
-
             <button className="sb-toggle-btn" onClick={toggleSidebar}>
-
                 {isCollapsed ? <FiMenu /> : <FiX />}
             </button>
             <div className={`sb-sidebar ${isCollapsed ? 'sb-collapsed' : ''}`}>
 
                 <nav className="sb-nav-links">
-
-                    <Link to="/dashboard/learnerdashboard" className="sb-nav-link">
+                    <Link to="/dashboard/learnerdashboard" className={`sb-nav-link ${location.pathname === '/dashboard/learnerdashboard' ? 'active' : ''}`}>
                         <FiHome className="sb-nav-icon" />
                         {!isCollapsed && <span>Dashboard</span>}
                     </Link>
-
                 </nav>
 
                 <div className="sb-user-section">
                     <div className="sb-user-profile">
-                        <img src={defaultAvatar} alt="User Avatar" className="sb-avatar" draggable='false' />
-                        {!isCollapsed && <span className="sb-username">Eren Yeager</span>}
+                        <FaUser size={24} />
+                        {!isCollapsed && <span className="sb-username">{name || 'Learner'}</span>}
                     </div>
                     <div className="sb-user-actions">
-                        <Link to="/settings" className="sb-action-btn   ">
+                        <Link to="/dashboard/settings" className="sb-action-btn">
                             <FiSettings />
                             {!isCollapsed && <span>Settings</span>}
                         </Link>
-                        <button className="sb-action-btn sb-logout-btn">
+                        <button className="sb-action-btn sb-logout-btn" onClick={handleLogout}>
                             <FiLogOut />
                             {!isCollapsed && <span>Logout</span>}
                         </button>

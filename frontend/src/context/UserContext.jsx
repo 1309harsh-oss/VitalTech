@@ -6,7 +6,12 @@ export function UserProvider({ children }) {
     const [userRole, setUserRole] = useState(() => {
         return localStorage.getItem('userRole') || '';
     });
-    const [name, setName] = useState('');
+    const [name, setName] = useState(() => {
+        return localStorage.getItem('userName') || '';
+    });
+    const [email, setEmail] = useState(() => {
+        return localStorage.getItem('userEmail') || '';
+    });
 
     useEffect(() => {
         if (userRole) {
@@ -17,26 +22,28 @@ export function UserProvider({ children }) {
     }, [userRole]);
 
     useEffect(() => {
-        async function fetchUserProfile() {
-            try {
-                const res = await fetch('/api/user/profile', {
-                    credentials: 'include',
-                });
-                if (res.ok) {
-                    const data = await res.json();
-                    setName(data.name || '');
-                }
-            } catch (err) {
-                console.log(err);
-            }
+        if (name) {
+            localStorage.setItem('userName', name);
+        } else {
+            localStorage.removeItem('userName');
         }
-        fetchUserProfile();
-    }, []);
+    }, [name]);
+
+    useEffect(() => {
+        if (email) {
+            localStorage.setItem('userEmail', email);
+        } else {
+            localStorage.removeItem('userEmail');
+        }
+    }, [email]);
 
     const logout = () => {
         setUserRole('');
         setName('');
+        setEmail('');
         localStorage.removeItem('userRole');
+        localStorage.removeItem('userName');
+        localStorage.removeItem('userEmail');
     };
 
     const value = {
@@ -44,6 +51,8 @@ export function UserProvider({ children }) {
         setUserRole,
         name,
         setName,
+        email,
+        setEmail,
         logout
     };
 

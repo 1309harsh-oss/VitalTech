@@ -131,7 +131,11 @@ function DiseaseFinderReports() {
           setResult(data);
         }
       } catch (err) {
-        setError('Something went wrong while processing the report.');
+        if (err.name === 'TypeError' && err.message?.includes('Failed to fetch')) {
+          setError('Cannot connect to AI server. Please ensure the Python server is running on port 5000 (run: python Server.py).');
+        } else {
+          setError('Something went wrong while processing the report.');
+        }
       } finally {
         setLoading(false);
       }

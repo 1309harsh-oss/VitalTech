@@ -1,0 +1,123 @@
+.disease-detector-container {
+  padding: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.detector-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.detector-header h1 {
+  font-size: 1.8rem;
+  color: #1e293b;
+  margin-bottom: 0.5rem;
+}
+
+.detector-header p {
+  color: #64748b;
+  font-size: 1.05rem;
+}
+
+.detector-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.detector-card {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  cursor: pointer;
+  transition: transform 0.25s, box-shadow 0.25s;
+  border: 2px solid transparent;
+}
+
+.detector-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  border-color: #e2e8f0;
+}
+
+.detector-card-icon {
+  margin-bottom: 1rem;
+}
+
+.detector-card h3 {
+  font-size: 1.15rem;
+  color: #1e293b;
+  margin-bottom: 0.5rem;
+}
+
+.detector-card p {
+  color: #64748b;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  margin-bottom: 1.2rem;
+}
+
+.detector-btn {
+  color: white;
+  border: none;
+  padding: 0.6rem 1.5rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.detector-btn:hover {
+  opacity: 0.9;
+}
+
+.detector-info {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+}
+
+.detector-info h3 {
+  text-align: center;
+  color: #1e293b;
+  margin-bottom: 1.5rem;
+  font-size: 1.2rem;
+}
+
+.info-steps {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.info-step {
+  text-align: center;
+  flex: 1;
+  min-width: 140px;
+}
+
+.info-step span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: #2563eb;
+  color: white;
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.info-step p {
+  color: #475569;
+  font-size: 0.9rem;
+}

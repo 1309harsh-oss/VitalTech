@@ -1,49 +1,86 @@
 .homer-container {
     width: 85vw;
-    height: 85vh;
+    height: auto;
+    min-height: 85vh;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top:3.45rem;
+    margin-top: 3.45rem;
     background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     border-radius: 20px;
-    padding: 2rem;
+    padding: 2.5rem;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
-.welcome-content {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.8s ease-out;
-    text-align: center;
-}
-
-.welcome-content.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.welcome-content h1 {
-    color: #2c3e50;
-    font-size: 2.5rem;
+.welcome-icon {
     margin-bottom: 1rem;
-    animation: fadeIn 0.8s ease-out;
+    animation: fadeIn 0.6s ease-out;
 }
 
 .welcome-title {
-    color: #34495e;
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
+    color: #2c3e50;
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+    animation: fadeIn 0.8s ease-out;
+    text-align: center;
+}
+
+.welcome-role {
+    color: #5a6a7a;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
 }
 
 .welcome-text {
     color: #7f8c8d;
-    font-size: 1.2rem;
+    font-size: 1.15rem;
     line-height: 1.6;
     max-width: 600px;
-    margin: 0 auto;
+    margin: 0 auto 2rem;
+    text-align: center;
+}
+
+.quick-actions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.2rem;
+    width: 100%;
+    max-width: 900px;
+    margin-top: 1rem;
+}
+
+.quick-action-card {
+    background: white;
+    border-radius: 14px;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+    transition: transform 0.25s, box-shadow 0.25s;
+    cursor: default;
+}
+
+.quick-action-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.13);
+}
+
+.quick-action-icon {
+    font-size: 2rem;
+    margin-bottom: 0.7rem;
+}
+
+.quick-action-card h4 {
+    color: #2c3e50;
+    font-size: 1.05rem;
+    margin-bottom: 0.3rem;
+}
+
+.quick-action-card p {
+    color: #7f8c8d;
+    font-size: 0.88rem;
+    line-height: 1.4;
 }
 
 @keyframes fadeIn {
@@ -54,5 +91,18 @@
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .homer-container {
+        width: 95vw;
+        padding: 1.5rem;
+    }
+    .quick-actions {
+        grid-template-columns: 1fr 1fr;
+    }
+    .welcome-title {
+        font-size: 1.6rem;
     }
 }

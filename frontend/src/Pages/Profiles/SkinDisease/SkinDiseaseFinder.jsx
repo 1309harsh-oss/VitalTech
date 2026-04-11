@@ -108,7 +108,11 @@ function SkinDiseaseFinder() {
       }
       setPrediction(data);
     } catch (err) {
-      setError(err.message || 'Failed to analyze the image');
+      if (err.name === 'TypeError' && err.message?.includes('Failed to fetch')) {
+        setError('Cannot connect to AI server. Please ensure the Python server is running on port 5000 (run: python Server.py).');
+      } else {
+        setError(err.message || 'Failed to analyze the image');
+      }
     } finally {
       setLoading(false);
     }

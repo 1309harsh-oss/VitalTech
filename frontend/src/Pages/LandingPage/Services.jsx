@@ -1,5 +1,42 @@
 import './Style.css';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+
 function Services() {
+    const navigate = useNavigate();
+    const [expandedCard, setExpandedCard] = useState(null);
+
+    const services = [
+        {
+            title: 'Disease Screening',
+            icon: '🩺',
+            description: 'Early detection of potential health issues using advanced AI algorithms',
+            details: 'Our AI models analyze blood test reports and medical scans to detect diseases like heart disease, diabetes, cancer, and more at their earliest stages. Upload your reports and get instant AI-powered insights.',
+            action: () => navigate('/login'),
+        },
+        {
+            title: 'Health Monitoring',
+            icon: '📊',
+            description: 'Continuous tracking and analysis of vital health parameters',
+            details: 'Track your health metrics over time with personalized dashboards. Monitor blood pressure, cholesterol, blood sugar, and other vital signs. Get AI-generated trend analysis and early warning alerts.',
+            action: () => navigate('/login'),
+        },
+        {
+            title: 'Risk Assessment',
+            icon: '⚕️',
+            description: 'Personalized health risk evaluation and recommendations',
+            details: 'Our machine learning models evaluate your complete health profile to assess risk levels for various conditions. Receive personalized exercise routines, diet plans, and lifestyle recommendations.',
+            action: () => navigate('/login'),
+        },
+        {
+            title: 'AI Consultation',
+            icon: '🤖',
+            description: '24/7 AI-powered preliminary health consultations',
+            details: 'Get instant answers to your health questions through our AI chatbot. Receive preliminary assessments, learn about symptoms, and get guidance on whether you need to see a specialist.',
+            action: () => navigate('/login'),
+        },
+    ];
+
     return (
         <div className="services-page">
             <section className="services-hero">
@@ -8,33 +45,25 @@ function Services() {
             </section>
 
             <section className="services-grid">
-                <div className="service-card">
-                    <h3>Disease Screening</h3>
-                    <div className="service-icon">🩺</div>
-                    <p>Early detection of potential health issues using advanced AI algorithms</p>
-                    <button className="learn-more">Learn More</button>
-                </div>
-
-                <div className="service-card">
-                    <h3>Health Monitoring</h3>
-                    <div className="service-icon">📊</div>
-                    <p>Continuous tracking and analysis of vital health parameters</p>
-                    <button className="learn-more">Learn More</button>
-                </div>
-
-                <div className="service-card">
-                    <h3>Risk Assessment</h3>
-                    <div className="service-icon">⚕️</div>
-                    <p>Personalized health risk evaluation and recommendations</p>
-                    <button className="learn-more">Learn More</button>
-                </div>
-
-                <div className="service-card">
-                    <h3>AI Consultation</h3>
-                    <div className="service-icon">🤖</div>
-                    <p>24/7 AI-powered preliminary health consultations</p>
-                    <button className="learn-more">Learn More</button>
-                </div>
+                {services.map((service, idx) => (
+                    <div className={`service-card ${expandedCard === idx ? 'expanded' : ''}`} key={idx}>
+                        <h3>{service.title}</h3>
+                        <div className="service-icon">{service.icon}</div>
+                        <p>{service.description}</p>
+                        {expandedCard === idx && (
+                            <div className="service-details">
+                                <p>{service.details}</p>
+                                <button className="try-service-btn" onClick={service.action}>Try This Service →</button>
+                            </div>
+                        )}
+                        <button
+                            className="learn-more"
+                            onClick={() => setExpandedCard(expandedCard === idx ? null : idx)}
+                        >
+                            {expandedCard === idx ? 'Show Less' : 'Learn More'}
+                        </button>
+                    </div>
+                ))}
             </section>
 
             <section className="why-choose-us">

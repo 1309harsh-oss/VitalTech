@@ -34,8 +34,8 @@ function Notifications() {
   return (
     <div className='notifications'>
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
-        <Typography variant="h4" component="h1" className='heading-noti'>
-          <h2>Notifications ({notificationsList.length})</h2>
+        <Typography variant="h5" component="h2" className='heading-noti'>
+          Notifications ({notificationsList.length})
         </Typography>
         {unreadCount > 0 && (
           <Button onClick={handleMarkAllRead} variant="outlined">
