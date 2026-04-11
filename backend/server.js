@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -13,8 +14,8 @@ const otpStore = {};
 app.use(express.json());
 app.use(cors());
 
-mongoose.connect("mongodb://mongo:hsIYHADojGQWtqzrdkytiKILvgHQyjDf@caboose.proxy.rlwy.net:10611")
-
+mongoose.connect(process.env.MONGODB_URI)
+  
 app.post('/login', async (req, res) => {
     try {
         const { email, password } = req.body;
@@ -36,7 +37,9 @@ app.post('/login', async (req, res) => {
 
         res.json({
             status: 'Success',
-            role: user.role
+            role: user.role,
+            name: user.name || '',
+            email: user.email || ''
         });
     } catch (error) {
         console.error('Login error:', error);
