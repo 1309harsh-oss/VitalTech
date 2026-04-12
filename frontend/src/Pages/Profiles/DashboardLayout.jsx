@@ -18,6 +18,8 @@ import PaymentStatus from './PaymentStatus/PaymentStatus';
 import Settings from './Settings/Settings';
 import SkinDiseaseFinder from './SkinDisease/SkinDiseaseFinder';
 import Home from './Homeer/Home';
+import NearbyHospitals from './NearbyHospitals/NearbyHospitals';
+import SosButton from '../../Components/SosButton/SosButton';
 
 function DashboardLayout() {
     const { userRole } = useUser();
@@ -56,8 +58,10 @@ function DashboardLayout() {
                     <Route path="patientreports" element={<PatientReports />} />
                     <Route path="payment-status" element={<PaymentStatus />} />
                     <Route path="settings" element={<Settings />} />
+                    <Route path="nearby-hospitals" element={<NearbyHospitals />} />
                 </Routes>
             </div>
+            <SosButton />
         </>
     )
 }

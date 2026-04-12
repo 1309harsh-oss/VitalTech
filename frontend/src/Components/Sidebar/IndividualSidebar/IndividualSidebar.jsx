@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { FiSettings, FiLogOut, FiMenu, FiX, FiHome, FiUsers, FiFileText, FiCamera, FiBell, FiClipboard, FiDollarSign } from 'react-icons/fi';
+import { FiSettings, FiLogOut, FiMenu, FiX, FiHome, FiUsers, FiFileText, FiCamera, FiBell, FiClipboard, FiDollarSign, FiMap } from 'react-icons/fi';
 import defaultAvatar from '../../../assets/logo-user.png';
 import '../Sidebar.css';
 import { useUser } from '../../../context/UserContext';
@@ -49,6 +49,10 @@ function IndividualSidebar() {
                 <Link to="/dashboard/notifications" className={`sb-nav-link ${location.pathname === '/dashboard/notifications' ? 'active' : ''}`}>
                     <FiBell className="sb-nav-icon" />
                     {!isCollapsed && <span>Notifications</span>}
+                </Link>
+                <Link to="/dashboard/nearby-hospitals" className={`sb-nav-link ${location.pathname === '/dashboard/nearby-hospitals' ? 'active' : ''}`}>
+                    <FiMap className="sb-nav-icon" />
+                    {!isCollapsed && <span>Nearby Hospitals</span>}
                 </Link>
 
             </nav>

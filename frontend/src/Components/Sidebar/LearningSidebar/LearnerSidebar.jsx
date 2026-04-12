@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { FiSettings, FiLogOut, FiMenu, FiX, FiHome } from 'react-icons/fi';
+import { FiSettings, FiLogOut, FiMenu, FiX, FiHome, FiMap } from 'react-icons/fi';
 import { FaUser } from 'react-icons/fa';
 import '../Sidebar.css';
 import { useUser } from '../../../context/UserContext';
@@ -31,6 +31,10 @@ function LearnerSidebar() {
                     <Link to="/dashboard/learnerdashboard" className={`sb-nav-link ${location.pathname === '/dashboard/learnerdashboard' ? 'active' : ''}`}>
                         <FiHome className="sb-nav-icon" />
                         {!isCollapsed && <span>Dashboard</span>}
+                    </Link>
+                    <Link to="/dashboard/nearby-hospitals" className={`sb-nav-link ${location.pathname === '/dashboard/nearby-hospitals' ? 'active' : ''}`}>
+                        <FiMap className="sb-nav-icon" />
+                        {!isCollapsed && <span>Nearby Hospitals</span>}
                     </Link>
                 </nav>
 

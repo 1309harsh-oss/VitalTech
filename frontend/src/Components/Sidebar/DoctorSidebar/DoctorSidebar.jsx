@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useUser } from '../../../context/UserContext';
-import { FiSettings, FiLogOut, FiMenu, FiX, FiHome, FiUsers, FiFileText, FiCamera, FiBell, FiClipboard, FiDollarSign } from 'react-icons/fi';
+import { FiSettings, FiLogOut, FiMenu, FiX, FiHome, FiUsers, FiFileText, FiCamera, FiBell, FiClipboard, FiDollarSign, FiMap } from 'react-icons/fi';
 // import defaultAvatar from '../../../assets/logo-user.png';
 import '../Sidebar.css';
 import { FaUser } from 'react-icons/fa';
@@ -63,6 +63,10 @@ function DoctorSidebar() {
                 <Link to="/dashboard/payment-status" className={`sb-nav-link ${location.pathname === '/dashboard/payment-status' ? 'active' : ''}`}>
                     <FiDollarSign className="sb-nav-icon" />
                     {!isCollapsed && <span>Payment Status</span>}
+                </Link>
+                <Link to="/dashboard/nearby-hospitals" className={`sb-nav-link ${location.pathname === '/dashboard/nearby-hospitals' ? 'active' : ''}`}>
+                    <FiMap className="sb-nav-icon" />
+                    {!isCollapsed && <span>Nearby Hospitals</span>}
                 </Link>
             </nav>
 
