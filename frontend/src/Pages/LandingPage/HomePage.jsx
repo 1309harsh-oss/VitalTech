@@ -106,12 +106,12 @@ function HomePage() {
                     </div>
                     <div className="footer-section">
                         <h4>Contact Us</h4>
-                        <p>Email: 70001933arin@gmail.com</p>
-                        <p>Phone: +91 93014592291</p>
+                        <p>Email: <a href="mailto:sharmaparikshit405@gmail.com">sharmaparikshit405@gmail.com</a></p>
+                        <p>Phone: +91 8817763021</p>
                     </div>
                 </div>
                 <div className="footer-bottom">
-                    <p>&copy; 2025 VitalCheck. All rights reserved. Coding Era!</p>
+                    <p>&copy; {new Date().getFullYear()} VitalCheck. All rights reserved.</p>
                 </div>
             </footer>
         </>
